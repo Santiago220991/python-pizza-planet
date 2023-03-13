@@ -4,7 +4,7 @@ from sqlalchemy.sql import text, column
 
 from .models import Ingredient, Order, OrderDetail, Size, Beverage, OrderBeverageDetail, db
 from .serializers import (IngredientSerializer, OrderSerializer,
-                          SizeSerializer, BeverageSerializer, ma)
+                          SizeSerializer, BeverageSerializer , ma)
 
 
 class BaseManager:
