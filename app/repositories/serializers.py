@@ -47,5 +47,12 @@ class OrderSerializer(ma.SQLAlchemyAutoSchema):
             'date',
             'total_price',
             'size',
-            'detail'
+            'detail',
+            'beverage'
         )
+
+class BeverageSerializer(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = Size
+        load_instance = True
+        fields = ('_id', 'name', 'price')
