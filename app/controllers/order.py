@@ -16,6 +16,7 @@ class OrderController(BaseController):
 
     @classmethod
     def create(cls, order: dict):
-       order_validator=(OrderValidator(order, cls.__required_info, cls))
-       order_request:OrderService = OrderValidatorProxy(order_validator, order, cls.__required_info)
+       current_order=order.copy()
+       order_validator=(OrderValidator(current_order, cls.__required_info, cls))
+       order_request:OrderService = OrderValidatorProxy(order_validator, current_order, cls.__required_info)
        return order_request.create() 
