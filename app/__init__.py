@@ -1,7 +1,7 @@
 import inspect
 
 from flask import Blueprint, Flask
-
+from flask_seeder import FlaskSeeder
 
 def create_app(config_class: str):
     flask_app = Flask(__name__)
@@ -21,6 +21,8 @@ def register_plugins(flask_app):
     from .plugins import db, ma
     db.init_app(flask_app)
     ma.init_app(flask_app)
+    seeder = FlaskSeeder()
+    seeder.init_app(flask_app, db)
 
 
 def cors_app(flask_app):
