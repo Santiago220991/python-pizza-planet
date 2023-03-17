@@ -20,6 +20,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Run Flake8
+        run: python3 -m flake8 app
       - name: Run test with pytest
         working-directory: ./${{ env.TEST_DIR }}
         run: |
