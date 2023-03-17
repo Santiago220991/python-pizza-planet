@@ -38,9 +38,9 @@ class ReportController():
     @staticmethod
     def get_best_costumers():
         best_clients=Order.query.with_entities(Order.client_name, func.sum(Order.total_price)).group_by(Order.client_name).order_by(func.sum(Order.total_price).desc()).limit(3).all()
-        first={best_clients[0][0]:best_clients[0][1]}
-        second={best_clients[1][0]:best_clients[1][1]}
-        third={best_clients[2][0]:best_clients[2][1]}
+        first={"name": best_clients[0][0], "total":best_clients[0][1]}
+        second={"name": best_clients[1][0], "total": best_clients[1][1]}
+        third={"name": best_clients[2][0], "total": best_clients[2][1]}
         return {"first": first, "second":second, "third":third }
     
     @classmethod
