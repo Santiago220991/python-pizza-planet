@@ -10,5 +10,5 @@ clients = [
     "Mauricio Sota",
     "Dario Caceres",
     "Ruben Conde",
-    "Maria Herrera"
+    "Maria Herrera",
 ]
