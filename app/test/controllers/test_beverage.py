@@ -22,7 +22,8 @@ def test_update(app, beverage: dict):
         **updated_fields
     })
     pytest.assume(error is None)
-    beverage_from_database, error = BeverageController.get_by_id(created_beverage['_id'])
+    beverage_from_database, error = BeverageController.get_by_id(
+        created_beverage['_id'])
     pytest.assume(error is None)
     for param, value in updated_fields.items():
         pytest.assume(updated_beverage[param] == value)
@@ -31,7 +32,8 @@ def test_update(app, beverage: dict):
 
 def test_get_by_id(app, beverage: dict):
     created_beverage, _ = BeverageController.create(beverage)
-    beverage_from_db, error = BeverageController.get_by_id(created_beverage['_id'])
+    beverage_from_db, error = BeverageController.get_by_id(
+        created_beverage['_id'])
     pytest.assume(error is None)
     for param, value in created_beverage.items():
         pytest.assume(beverage_from_db[param] == value)
@@ -44,7 +46,8 @@ def test_get_all(app, beverages: list):
         created_beverages.append(created_beverage)
 
     beverages_from_db, error = BeverageController.get_all()
-    searchable_beverages = {db_beverage['_id']: db_beverage for db_beverage in beverages_from_db}
+    searchable_beverages = {
+        db_beverage['_id']: db_beverage for db_beverage in beverages_from_db}
     pytest.assume(error is None)
     for created_beverage in created_beverages:
         current_id = created_beverage['_id']

@@ -22,11 +22,14 @@ from app.controllers import *
 def create_sizes(data) -> list:
     return [Size(name=key, price=value) for key, value in data.items()]
 
+
 def create_beverages(data) -> list:
     return [Beverage(name=key, price=value) for key, value in data.items()]
 
+
 def create_ingredients(data) -> list:
     return [Ingredient(name=key, price=value) for key, value in data.items()]
+
 
 def create_orders(count: int, clients) -> list:
     new_order = []
@@ -36,20 +39,27 @@ def create_orders(count: int, clients) -> list:
     ingredients, _ = IngredientController.get_all()
     sizes, _ = SizeController.get_all()
     beverages, _ = BeverageController.get_all()
-    for index in range(1, count+1):
+    for index in range(1, count + 1):
         size = sizes[randint(0, len(sizes) - 1)]
-        order_beverages =sample(beverages, randint(1, len(beverages) - 1))
+        order_beverages = sample(beverages, randint(1, len(beverages) - 1))
         order_ingredients = sample(ingredients, randint(1, len(ingredients) - 1))
         name = clients[randint(0, len(clients) - 1)]
-        total = size["price"]+ sum(ingredient["price"] for ingredient in order_ingredients) + sum(beverage["price"] for beverage in order_beverages)
+        total = (
+            size["price"]
+            + sum(ingredient["price"] for ingredient in order_ingredients)
+            + sum(beverage["price"] for beverage in order_beverages)
+        )
         new_order.append(
             Order(
                 client_name=name,
                 client_dni=fake.pyint(99999999, 999999999),
                 client_phone=fake.pyint(99999999, 999999999),
                 client_address=fake.address(),
-                total_price= round(total,2),
-                date= fake.date_between(datetime.fromisoformat('2023-01-01'), datetime.fromisoformat(datetime.now().date().isoformat())),
+                total_price=round(total, 2),
+                date=fake.date_between(
+                    datetime.fromisoformat("2023-01-01"),
+                    datetime.fromisoformat(datetime.now().date().isoformat()),
+                ),
                 size_id=size["_id"],
             )
         )
@@ -59,8 +69,9 @@ def create_orders(count: int, clients) -> list:
                     order_id=index,
                     ingredient_price=ingredient["price"],
                     ingredient_id=ingredient["_id"],
-                ))
-        
+                )
+            )
+
         for beverage in order_beverages:
             beverage_order_detail.append(
                 OrderBeverageDetail(
@@ -71,6 +82,7 @@ def create_orders(count: int, clients) -> list:
             )
 
     return new_order, order_detail, beverage_order_detail
+
 
 class DatabaseSeeder(Seeder):
     @classmethod
