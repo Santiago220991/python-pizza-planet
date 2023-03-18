@@ -15,7 +15,7 @@ This is an example software for a pizzeria that takes customizable orders.
 
 You will need the following general tools:
 
-- A Python interpreter installed. [3.8.x](https://www.python.org/downloads/release/python-3810/) is preffered.
+- A Python interpreter installed. [3.9.x](https://www.python.org/downloads/release/python-3913/) is preffered.
 
 - A text editor: preferably [Visual Studio Code](https://code.visualstudio.com/download)
 
@@ -26,7 +26,7 @@ You will need the following general tools:
 - Clone the repo
 
 ```bash
-git clone https://github.com/ioet/python-pizza-planet.git
+git clone https://github.com/Santiago220991/python-pizza-planet.git
 ```
 
 - Create, activate a virtual environment, and install dependencies of the project:
